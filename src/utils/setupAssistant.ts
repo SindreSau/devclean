@@ -1,5 +1,7 @@
 import chalk from "chalk";
-import { Checkbox } from "@cliffy/prompt";
+import { Checkbox, Select } from "@cliffy/prompt";
+import { LANGUAGES } from "../constants.ts";
+import { Config } from "../types.ts";
 
 function displayDisclaimer(): void {
   console.clear();
@@ -12,40 +14,35 @@ function displayDisclaimer(): void {
   `));
 }
 
-enum Language {
-  Node = "node",
-  Python = "python",
-  Java = "java",
-  Rust = "rust",
-  Common = "common",
-}
-
-type Config = {
-  languages: Language[];
-};
-
 export default async function setupAssistant(): Promise<Config> {
-  // Display disclaimer
-  // if (await !displayDisclaimer()) {
-  //   console.log("Exiting...");
-  //   Deno.exit(0);
-  // }
+  displayDisclaimer();
 
-  // Prompt user to select languages using checkboxes
+  // Prompt the user whether to use .gitignore files or select languages manually
+  console.log(chalk.green.bold("Select the method you want to use:"));
+  const method = await Select.prompt({
+    message: "Select method",
+    options: [
+      { name: "Use .gitignore files", value: "gitignore" },
+      { name: "Select languages manually", value: "manual" },
+    ],
+  });
+
+  if (method === "gitignore") {
+    return { languages: [] };
+  }
+
+  // Prompt the user to select the languages they want to clean up
   console.clear();
   console.log(chalk.green.bold("Select the languages you want to clean up:"));
   const languages = await Checkbox.prompt({
     message: "Select languages",
-    options: [
-      { name: Language.Node, value: Language.Node },
-      { name: Language.Python, value: Language.Python },
-      { name: Language.Java, value: Language.Java },
-      { name: Language.Rust, value: Language.Rust },
-      { name: Language.Common, value: Language.Common },
-    ],
+    options: Object.entries(LANGUAGES).map(([key, value]) => ({
+      name: `${value.icon} ${key}`,
+      value: key,
+    })),
   });
 
   return {
-    languages: languages as Language[],
+    languages: languages as (keyof typeof LANGUAGES)[],
   };
 }

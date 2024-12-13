@@ -20,11 +20,10 @@ if (import.meta.main) {
 
     // Run throguh setup assistant
     const config = await setupAssistant();
-    console.log("CONFIG: " + config.languages);
 
     // Clean up the specified directory
     const path = args[0];
-    cleanup(path);
+    cleanup(path, config);
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Error: ${error.message}`);
