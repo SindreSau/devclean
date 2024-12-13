@@ -1,13 +1,31 @@
 import cleanup from "./src/cleanup.ts";
+import showHelp from "./src/utils/help.ts";
+import setupAssistant from "./src/utils/setupAssistant.ts";
 import validateArgs from "./src/utils/validateArgs.ts";
 
 if (import.meta.main) {
   try {
-    const path = Deno.args[0];
-    if (!validateArgs([path])) {
+    const args = Deno.args;
+
+    // Check if the user requested help
+    if (args.length === 0 || args[0] === "-h" || args[0] === "--help") {
+      showHelp();
+    }
+    
+    // Validate the provided arguments
+    if (!validateArgs(args)) {
       console.error("Argument validation failed.");
       Deno.exit(1);
     }
+
+    const path = args[0];
+
+    // Run throguh setup assistant
+    const config = await setupAssistant();
+    console.log("CONFIG: " + config);
+    
+    
+    // Clean up the specified directory
     cleanup(path);
   } catch (error) {
     if (error instanceof Error) {
