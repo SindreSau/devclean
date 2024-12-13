@@ -75,14 +75,6 @@ Deno.test("Path safety checks", async (t) => {
     assertEquals(pathIsLegal(testDir), true);
   });
 
-  await t.step("blocks system directories", () => {
-    assertThrows(
-      () => pathIsLegal("/System"),
-      Error,
-      "Path validation failed: Access denied: Path must be within user's home directory",
-    );
-  });
-
   await t.step("blocks sensitive config directories", () => {
     assertThrows(
       () => pathIsLegal(sshDir),

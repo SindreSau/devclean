@@ -6,7 +6,6 @@ import { join } from "jsr:@std/path";
 import { LANGUAGES } from "./constants.ts";
 import { Table } from "@cliffy/table";
 import { CleanupProgress } from "./utils/progress.ts";
-import { setUpDummyFolderStructureForTesting } from "./utils/testFunctions.ts";
 
 // Using a Set to store unique patterns
 async function getGitignorePatterns(
