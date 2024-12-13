@@ -5,6 +5,8 @@
     "compile": "deno compile --allow-read --allow-write -o devclean main.ts"
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@1"
+    "@cliffy/prompt": "jsr:@cliffy/prompt@^1.0.0-rc.7",
+    "@std/assert": "jsr:@std/assert@1",
+    "chalk": "npm:chalk@^5.3.0"
   }
 }

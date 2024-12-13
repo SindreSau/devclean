@@ -16,6 +16,16 @@ mv devclean /usr/local/bin
 ```
 
 ## Usage
+1. Run the tool and provide a project or a parent folder for recursive cleaning:
 ```bash
 devclean <path>
+```
+2. Run through the prompts to confirm the deletion of the files and folders.
+
+
+## Testing
+The tests require --allow-read to properly test the file system operations.
+To run the tests, use the following command:
+```bash
+deno test --allow-read
 ```
