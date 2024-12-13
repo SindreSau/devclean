@@ -1,4 +1,4 @@
-import { assertEquals, assertRejects, assertThrows } from "@std/assert";
+import { assertEquals, assertThrows } from "@std/assert";
 import { formatSize, getFileSize } from "./src/utils/size.ts";
 import { pathIsLegal, validateArgs } from "./src/utils/validateArgs.ts";
 
