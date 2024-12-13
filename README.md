@@ -22,6 +22,7 @@ devclean <path>
 ```
 2. Run through the prompts to confirm the deletion of the files and folders.
 
+![alt text](<src/assets/images/CleanShot 2024-12-13 at 16.07.01@2x.png>)
 
 ## Testing
 The tests require --allow-read to properly test the file system operations.
@@ -29,3 +30,7 @@ To run the tests, use the following command:
 ```bash
 deno test --allow-all
 ```
+
+### TODO
+- Add a progress bar for mapping out folders and files to be deleted!
+
