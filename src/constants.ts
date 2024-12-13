@@ -76,8 +76,6 @@ export const LANGUAGES = {
   common: {
     dirs: [
       ".DS_Store",
-      ".env.local",
-      ".env.*.local",
       "tmp",
       "temp",
       "logs",
@@ -89,32 +87,27 @@ export const LANGUAGES = {
   },
 };
 
-export const ILLEGAL_PATHS = [
-  "/", // Root directory
-  "/bin", // System binaries
-  "/boot", // Bootloader files
-  "/dev", // Device files
-  "/etc", // System configuration files
-  "/home", // Home directories
-  "/lib", // Shared libraries
-  "/lib64", // 64-bit libraries
-  "/mnt", // Mount points
-  "/opt", // Optional software
-  "/proc", // Process files
-  "/root", // Root user directory
-  "/run", // Runtime data
-  "/sbin", // System binaries
-  "/srv", // Server data
-  "/sys", // System files
-  "/tmp", // Temporary files
-  "/usr", // User programs
-  "/var", // Variable data
-
-  //Apple specific
-  "/Applications", // Applications
-  "/Library", // System library
-  "/Network", // Network mounts
-  "/System", // System files
-  "/Users", // User directories
-  "/Volumes", // Mounted volumes
+export const GITIGNORE_IGNORE = [
+  ".git",
+  ".gitignore",
+  ".github",
+  ".vscode",
+  ".idea",
+  ".gitlab",
+  ".circleci",
+  ".travis.yml",
+  ".gitmodules",
+  ".gitattributes",
+  ".editorconfig",
+  ".eslintrc",
+  ".prettierrc",
+  ".stylelintrc",
+  ".huskyrc",
+  ".env",
+  ".env.local",
+  ".env.*.local",
+  ".env.development",
+  ".env.test",
+  ".env.production",
+  ".env.staging",
 ];

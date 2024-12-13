@@ -7,12 +7,12 @@ All you need to do is specify the path to the project you want cleaned, or a fol
 ## Installation
 1. Compile to a binary using the following command:
 ```bash
-deno compile --allow-read --allow-write -o devclean main.ts
+deno task compile
 ```
 
 2. Move the binary to a directory in your PATH, like `/usr/local/bin`:
 ```bash
-mv devclean /usr/local/bin
+mv out/devclean /usr/local/bin
 ```
 
 ## Usage
@@ -27,5 +27,5 @@ devclean <path>
 The tests require --allow-read to properly test the file system operations.
 To run the tests, use the following command:
 ```bash
-deno test --allow-read
+deno test --allow-all
 ```

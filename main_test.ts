@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "@std/assert";
-import { formatSize } from "./src/utils/size.ts";
+import { formatSize, getFileSize } from "./src/utils/size.ts";
 import { pathIsLegal, validateArgs } from "./src/utils/validateArgs.ts";
 
 Deno.test("Correct args handling", async (t) => {
@@ -38,6 +38,23 @@ Deno.test("formatSize", async (t) => {
     assertEquals(formatSize(1024 * 1024), "1.0MB");
     assertEquals(formatSize(500), "500.0B");
     assertEquals(formatSize(0), "0B");
+  });
+});
+
+Deno.test("getSize", async (t) => {
+  await t.step("returns the correct size of a file", async () => {
+    // Setup test folder and file
+    const testDir = "./.test-dir";
+    const testFile = `${testDir}/test.txt`;
+    await Deno.mkdir(testDir);
+    await Deno.writeTextFile(testFile, "test");
+
+    // Test
+    const size = await getFileSize(testFile);
+    assertEquals(size, 4);
+
+    // Cleanup
+    await Deno.remove(testDir, { recursive: true });
   });
 });
 

@@ -1,3 +1,4 @@
+// main.ts
 import cleanup from "./src/cleanup.ts";
 import showHelp from "./src/utils/help.ts";
 import setupAssistant from "./src/utils/setupAssistant.ts";
@@ -10,6 +11,7 @@ if (import.meta.main) {
     // Check if the user requested help
     if (args.length === 0 || args[0] === "-h" || args[0] === "--help") {
       showHelp();
+      Deno.exit(0); // Exit the program
     }
 
     // Validate the provided arguments
@@ -23,7 +25,7 @@ if (import.meta.main) {
 
     // Clean up the specified directory
     const path = args[0];
-    cleanup(path, config);
+    await cleanup(path, config);
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Error: ${error.message}`);
